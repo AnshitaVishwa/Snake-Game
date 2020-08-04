@@ -5,23 +5,17 @@ using namespace std;
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(900, 900), "Awesome Game");
-        window.clear();
         sf :: RectangleShape rectangle[70][70];
-        pair<int, int> pr = {20, 20};
-        int x = 0, y = 0;
-        for (int i = 0; i < 70; ++i) {
-            y += 10; x = 0;
-            for (int j = 0; j < 70; ++j) {
-                x += 10;
-                rectangle[i][j].setSize(sf::Vector2f(10, 10));
-                rectangle[i][j].setOutlineColor(sf::Color::Green);
-                rectangle[i][j].setOutlineThickness(2);
-                rectangle[i][j].setPosition(x, y);
-                if (x == pr.first and y == pr.second) rectangle[i][j].setFillColor(sf::Color::Red);
-                window.draw(rectangle[i][j]);
-            }
-        }
-         while (window.isOpen())
+        pair<int, int> food = {60, 60}, pr;
+        deque<pair<int, int>> snake;
+        snake.push_front({30, 30});
+        snake.push_front({40, 30});
+        snake.push_front({50, 30});
+        // for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+        //     pair<int, int> t = *itr;
+        //     cout << t.second << " " << t.first << "\n";
+        // }
+        while (window.isOpen())
         {
             sf::Event event;
             while (window.pollEvent(event))
@@ -33,34 +27,45 @@ int main()
                     break;
                 case sf :: Event :: EventType :: KeyPressed :
                         if(event.key.code == sf::Keyboard::Left){
+                            pr = snake.front();
                             pr.first -= 10;
                         }
                         else if(event.key.code== sf::Keyboard::Right){
+                            pr = snake.front();
                             pr.first += 10;
                         }
                         else if(event.key.code==sf::Keyboard::Up){
+                            pr = snake.front();
                             pr.second -= 10;
                         }
                         else if(event.key.code==sf::Keyboard::Down){
+                            pr = snake.front();
                             pr.second += 10;
                         }
                         break;
                 }
             }
         window.clear();
+        snake.push_front(pr);
+        // snake.pop_back();
         int x = 0, y = 0;
         for (int i = 0; i < 70; ++i) {
-        y += 10; x = 0;
-        for (int j = 0; j < 70; ++j) {
-            x += 10;
-            rectangle[i][j].setSize(sf::Vector2f(10, 10));
-            rectangle[i][j].setOutlineColor(sf::Color::Green);
-            rectangle[i][j].setOutlineThickness(2);
-            rectangle[i][j].setPosition(x, y);
-            rectangle[i][j].setFillColor(sf::Color::White);
-            if (x == pr.first and y == pr.second) rectangle[i][j].setFillColor(sf::Color::Red);
-            window.draw(rectangle[i][j]);
-        }
+            y += 10; x = 0;
+            for (int j = 0; j < 70; ++j) {
+                x += 10;
+                rectangle[i][j].setSize(sf::Vector2f(10, 10));
+                rectangle[i][j].setOutlineColor(sf::Color::Green);
+                rectangle[i][j].setOutlineThickness(2);
+                rectangle[i][j].setPosition(x, y);
+                rectangle[i][j].setFillColor(sf::Color::White);
+                if (x == food.first and y == food.second) rectangle[i][j].setFillColor(sf::Color::Black);
+                for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+                    pair<int, int> t = *itr;
+                    // cout << t.second << " " << t.first << "\n";
+                    if (t.first == x and t.second == y) rectangle[i][j].setFillColor(sf::Color::Red);
+                }
+                window.draw(rectangle[i][j]);
+            }
         }
         window.display();
     }
