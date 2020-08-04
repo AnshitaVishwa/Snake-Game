@@ -29,25 +29,31 @@ int main()
                         if(event.key.code == sf::Keyboard::Left){
                             pr = snake.front();
                             pr.first -= 10;
+                            snake.pop_back();
+                            snake.push_front(pr);
                         }
                         else if(event.key.code== sf::Keyboard::Right){
                             pr = snake.front();
                             pr.first += 10;
+                            snake.pop_back();
+                            snake.push_front(pr);
                         }
                         else if(event.key.code==sf::Keyboard::Up){
                             pr = snake.front();
                             pr.second -= 10;
+                            snake.pop_back();
+                            snake.push_front(pr);
                         }
                         else if(event.key.code==sf::Keyboard::Down){
                             pr = snake.front();
                             pr.second += 10;
+                            snake.pop_back();
+                            snake.push_front(pr);
                         }
                         break;
                 }
             }
         window.clear();
-        snake.push_front(pr);
-        // snake.pop_back();
         int x = 0, y = 0;
         for (int i = 0; i < 70; ++i) {
             y += 10; x = 0;
