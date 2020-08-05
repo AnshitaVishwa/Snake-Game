@@ -11,10 +11,6 @@ int main()
         snake.push_front({30, 30});
         snake.push_front({40, 30});
         snake.push_front({50, 30});
-        // for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
-        //     pair<int, int> t = *itr;
-        //     cout << t.second << " " << t.first << "\n";
-        // }
         while (window.isOpen())
         {
             sf::Event event;
@@ -31,30 +27,71 @@ int main()
                             pr.first -= 10;
                             snake.pop_back();
                             snake.push_front(pr);
+                            if (pr == food) {
+                                snake.push_back(food);
+                                int fx, fy;
+                                while (1) {
+                                    fx = 200 + (rand() % (600 - 200 + 1));
+                                    fy = 200 + (rand() % (600 - 200 + 1));
+                                    if (fx % 10 == 0 and fy % 10 == 0) break;
+                                }
+                                food = {fx, fy};
+                            }
                         }
                         else if(event.key.code== sf::Keyboard::Right){
                             pr = snake.front();
                             pr.first += 10;
                             snake.pop_back();
                             snake.push_front(pr);
+                            if (pr == food) {
+                                snake.push_back(food);
+                                int fx, fy;
+                                while (1) {
+                                    fx = 200 + (rand() % (600 - 200 + 1));
+                                    fy = 200 + (rand() % (600 - 200 + 1));
+                                    if (fx % 10 == 0 and fy % 10 == 0) break;
+                                }
+                                food = {fx, fy};
+                            }
                         }
                         else if(event.key.code==sf::Keyboard::Up){
                             pr = snake.front();
                             pr.second -= 10;
                             snake.pop_back();
                             snake.push_front(pr);
+                           if (pr == food) {
+                                snake.push_back(food);
+                                int fx, fy;
+                                while (1) {
+                                    fx = 200 + (rand() % (600 - 200 + 1));
+                                    fy = 200 + (rand() % (600 - 200 + 1));
+                                    if (fx % 10 == 0 and fy % 10 == 0) break;
+                                }
+                                food = {fx, fy};
+                            }
                         }
                         else if(event.key.code==sf::Keyboard::Down){
                             pr = snake.front();
                             pr.second += 10;
                             snake.pop_back();
                             snake.push_front(pr);
+                           if (pr == food) {
+                                snake.push_back(food);
+                                int fx, fy;
+                                while (1) {
+                                    fx = 200 + (rand() % (600 - 200 + 1));
+                                    fy = 200 + (rand() % (600 - 200 + 1));
+                                    if (fx % 10 == 0 and fy % 10 == 0) break;
+                                }
+                                food = {fx, fy};
+                            }
                         }
                         break;
                 }
             }
         window.clear();
         int x = 0, y = 0;
+        pair<int, int> head = snake.front();
         for (int i = 0; i < 70; ++i) {
             y += 10; x = 0;
             for (int j = 0; j < 70; ++j) {
@@ -67,7 +104,6 @@ int main()
                 if (x == food.first and y == food.second) rectangle[i][j].setFillColor(sf::Color::Black);
                 for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
                     pair<int, int> t = *itr;
-                    // cout << t.second << " " << t.first << "\n";
                     if (t.first == x and t.second == y) rectangle[i][j].setFillColor(sf::Color::Red);
                 }
                 window.draw(rectangle[i][j]);
