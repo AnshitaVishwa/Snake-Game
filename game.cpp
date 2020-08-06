@@ -41,40 +41,50 @@ int main () {
                             newHead = head.first;
                             newHead.first -= 64;
                             // Working on Tail
-                            pair<pair<int, int>, string> tail = snake.back(), forwardTail;
-                            snake.pop_back();
-                            forwardTail = snake.back();
-                            if (tail.second == "TD") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TD";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TL";
+                            if (newHead == food.first) {
+                                int fx, fy;
+                                while (1) {
+                                    fx = (rand() % (576 - 0 + 1));
+                                    fy = (rand() % (576 - 0 + 1));
+                                    if (fx % 64 == 0 and fy % 64 == 0) break;
                                 }
-                            } else if (tail.second == "TU") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TL";
-                                }
-                            } else if (tail.second == "TR") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TD";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TU";
-                                }
-                            } else if (tail.second == "TL") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TD";
+                                food = {{fx, fy}, "F"};
+                            } else {
+                                pair<pair<int, int>, string> tail = snake.back(), forwardTail;
+                                snake.pop_back();
+                                forwardTail = snake.back();
+                                if (tail.second == "TD") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TD";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TL";
+                                    }
+                                } else if (tail.second == "TU") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TL";
+                                    }
+                                } else if (tail.second == "TR") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TD";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TU";
+                                    }
+                                } else if (tail.second == "TL") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TD";
+                                    }
                                 }
                             }
                             // Working on Head
@@ -92,40 +102,50 @@ int main () {
                             newHead = head.first;
                             newHead.first += 64;
                             // Working on Tail
-                            pair<pair<int, int>, string> tail = snake.back(), forwardTail;
-                            snake.pop_back();
-                            forwardTail = snake.back();
-                            if (tail.second == "TD") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TD";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TR";
+                            if (newHead == food.first) {
+                                int fx, fy;
+                                while (1) {
+                                    fx = (rand() % (576 - 0 + 1));
+                                    fy = (rand() % (576 - 0 + 1));
+                                    if (fx % 64 == 0 and fy % 64 == 0) break;
                                 }
-                            } else if (tail.second == "TU") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TR";
-                                }
-                            } else if (tail.second == "TL") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TD";
-                                } 
-                            } else if (tail.second == "TR") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TD";
+                                food = {{fx, fy}, "F"};
+                            } else {
+                                 pair<pair<int, int>, string> tail = snake.back(), forwardTail;
+                                snake.pop_back();
+                                forwardTail = snake.back();
+                                if (tail.second == "TD") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TD";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TR";
+                                    }
+                                } else if (tail.second == "TU") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TR";
+                                    }
+                                } else if (tail.second == "TL") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TD";
+                                    } 
+                                } else if (tail.second == "TR") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TD";
+                                    }
                                 }
                             }
                             // Working on Head
@@ -143,40 +163,50 @@ int main () {
                             newHead = head.first;
                             newHead.second -= 64;
                             // Working on Tail
-                            pair<pair<int, int>, string> tail = snake.back(), forwardTail;
-                            snake.pop_back();
-                            forwardTail = snake.back();
-                            if (tail.second == "TL") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TD";
-                                }  else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TU";
+                            if (newHead == food.first) {
+                                int fx, fy;
+                                while (1) {
+                                    fx = (rand() % (576 - 0 + 1));
+                                    fy = (rand() % (576 - 0 + 1));
+                                    if (fx % 64 == 0 and fy % 64 == 0) break;
                                 }
-                            } else if (tail.second == "TR") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TD";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TU";
-                                }
-                            } else if (tail.second == "TD") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TD";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TL";
-                                }
-                            } else if (tail.second == "TU") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TL";
+                                food = {{fx, fy}, "F"};
+                            } else {
+                                pair<pair<int, int>, string> tail = snake.back(), forwardTail;
+                                snake.pop_back();
+                                forwardTail = snake.back();
+                                if (tail.second == "TL") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TD";
+                                    }  else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TU";
+                                    }
+                                } else if (tail.second == "TR") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TD";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TU";
+                                    }
+                                } else if (tail.second == "TD") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TD";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TL";
+                                    }
+                                } else if (tail.second == "TU") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TL";
+                                    }
                                 }
                             }
                             // Working on Head
@@ -194,40 +224,50 @@ int main () {
                             newHead = head.first;
                             newHead.second += 64;
                             // Working on Tail
-                            pair<pair<int, int>, string> tail = snake.back(), forwardTail;
-                            snake.pop_back();
-                            forwardTail = snake.back();
-                            if (tail.second == "TL") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TD";
+                            if (newHead == food.first) {
+                                int fx, fy;
+                                while (1) {
+                                    fx = (rand() % (576 - 0 + 1));
+                                    fy = (rand() % (576 - 0 + 1));
+                                    if (fx % 64 == 0 and fy % 64 == 0) break;
                                 }
-                            } else if (tail.second == "TR") {
-                                if (forwardTail.second == "BH") {
-                                    snake.back().second = "TR";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TD";
-                                }
-                            } else if (tail.second == "TU") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TU";
-                                } else if (forwardTail.second == "CBL") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CBR") {
-                                    snake.back().second = "TR";
-                                }
-                            } else if (tail.second == "TD") {
-                                if (forwardTail.second == "BV") {
-                                    snake.back().second = "TD";
-                                } else if (forwardTail.second == "CTL") {
-                                    snake.back().second = "TL";
-                                } else if (forwardTail.second == "CTR") {
-                                    snake.back().second = "TR";
+                                food = {{fx, fy}, "F"};
+                            } else {
+                                pair<pair<int, int>, string> tail = snake.back(), forwardTail;
+                                snake.pop_back();
+                                forwardTail = snake.back();
+                                if (tail.second == "TL") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TD";
+                                    }
+                                } else if (tail.second == "TR") {
+                                    if (forwardTail.second == "BH") {
+                                        snake.back().second = "TR";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TD";
+                                    }
+                                } else if (tail.second == "TU") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TU";
+                                    } else if (forwardTail.second == "CBL") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CBR") {
+                                        snake.back().second = "TR";
+                                    }
+                                } else if (tail.second == "TD") {
+                                    if (forwardTail.second == "BV") {
+                                        snake.back().second = "TD";
+                                    } else if (forwardTail.second == "CTL") {
+                                        snake.back().second = "TL";
+                                    } else if (forwardTail.second == "CTR") {
+                                        snake.back().second = "TR";
+                                    }
                                 }
                             }
                             // Working on Head
