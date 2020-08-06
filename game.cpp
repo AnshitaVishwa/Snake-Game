@@ -56,8 +56,14 @@ int main () {
                                 } else if (forwardTail.second == "CBR") {
                                     snake.back().second = "TR";
                                 }
-                            } else if (tail.second == "TR" and forwardTail.second == "BH") {
-                                snake.back().second = "TR";
+                            } else if (tail.second == "TR") {
+                                if (forwardTail.second == "BH") {
+                                    snake.back().second = "TR";
+                                } else if (forwardTail.second == "CBL") {
+                                    snake.back().second = "TD";
+                                } else if (forwardTail.second == "CTL") {
+                                    snake.back().second = "TU";
+                                }
                             } else if (tail.second == "TL") {
                                 if (forwardTail.second == "BH") {
                                     snake.back().second = "TL";
@@ -97,8 +103,14 @@ int main () {
                                 } else if (forwardTail.second == "CBL") {
                                     snake.back().second = "TL";
                                 }
-                            } else if (tail.second == "TL" and forwardTail.second == "BH") {
-                                snake.back().second = "TL";
+                            } else if (tail.second == "TL") {
+                                if (forwardTail.second == "BH") {
+                                    snake.back().second = "TL";
+                                } else if (forwardTail.second == "CTR") {
+                                    snake.back().second = "TU";
+                                } else if (forwardTail.second == "CBR") {
+                                    snake.back().second = "TD";
+                                } 
                             } else if (tail.second == "TR") {
                                 if (forwardTail.second == "BH") {
                                     snake.back().second = "TR";
@@ -138,8 +150,14 @@ int main () {
                                 } else if (forwardTail.second == "CBL") {
                                     snake.back().second = "TD";
                                 }
-                            } else if (tail.second == "TD" and forwardTail.second == "BV") {
-                                snake.back().second = "TD";
+                            } else if (tail.second == "TD") {
+                                if (forwardTail.second == "BV") {
+                                    snake.back().second = "TD";
+                                } else if (forwardTail.second == "CTR") {
+                                    snake.back().second = "TR";
+                                } else if (forwardTail.second == "CTL") {
+                                    snake.back().second = "TL";
+                                }
                             } else if (tail.second == "TU") {
                                 if (forwardTail.second == "BV") {
                                     snake.back().second = "TU";
@@ -179,8 +197,14 @@ int main () {
                                 } else if (forwardTail.second == "CTL") {
                                     snake.back().second = "TU";
                                 }
-                            } else if (tail.second == "TU" and forwardTail.second == "BV") {
-                                snake.back().second = "TU";
+                            } else if (tail.second == "TU") {
+                                if (forwardTail.second == "BV") {
+                                    snake.back().second = "TU";
+                                } else if (forwardTail.second == "CBL") {
+                                    snake.back().second = "TL";
+                                } else if (forwardTail.second == "CBR") {
+                                    snake.back().second = "TR";
+                                }
                             } else if (tail.second == "TD") {
                                 if (forwardTail.second == "BV") {
                                     snake.back().second = "TD";
