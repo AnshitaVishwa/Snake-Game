@@ -250,6 +250,9 @@ int main () {
             for (int j = 0; j < 10; ++j) {
                 sprite.setPosition(x, y);
                 sprite.setTextureRect(sf::IntRect(0, 128, 64, 64));
+                if (x == food.first.first and y == food.first.second) {
+                    sprite.setTextureRect(sf::IntRect(0, 192, 64, 64));
+                }
                 for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
                     pair<pair<int, int>, string> temp = *itr;
                     if (temp.first.first == x and temp.first.second == y) {
