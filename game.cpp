@@ -21,10 +21,8 @@ int main () {
     font.loadFromFile("game_over.ttf");
     sf::Text text;
     text.setFont(font);
-    text.setString("Game Over");
-    text.setCharacterSize(150);
-    text.setFillColor(sf::Color::Blue);
     bool gameOver = false;
+    int score = 0;
     while (window.isOpen())
         {
             sf::Event event;
@@ -40,8 +38,19 @@ int main () {
                             head = snake.front();
                             newHead = head.first;
                             newHead.first -= 64;
+                            // Game over logic
+                            for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+                                if ((*itr).first == newHead) {
+                                    gameOver = true;
+                                }
+                            }
+                            int varX = newHead.first, varY = newHead.second;
+                            if (varX < 0 or varX > 576 or varY < 0 or varY > 576) {
+                                gameOver = true;
+                            }
                             // Working on Tail
                             if (newHead == food.first) {
+                                ++score;
                                 int fx, fy;
                                 while (1) {
                                     fx = (rand() % (576 - 0 + 1));
@@ -101,8 +110,19 @@ int main () {
                             head = snake.front();
                             newHead = head.first;
                             newHead.first += 64;
+                            // Game over logic
+                            for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+                                if ((*itr).first == newHead) {
+                                    gameOver = true;
+                                }
+                            }
+                            int varX = newHead.first, varY = newHead.second;
+                            if (varX < 0 or varX > 576 or varY < 0 or varY > 576) {
+                                gameOver = true;
+                            }
                             // Working on Tail
                             if (newHead == food.first) {
+                                ++score;
                                 int fx, fy;
                                 while (1) {
                                     fx = (rand() % (576 - 0 + 1));
@@ -162,8 +182,19 @@ int main () {
                             head = snake.front();
                             newHead = head.first;
                             newHead.second -= 64;
+                            // Game over logic
+                            for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+                                if ((*itr).first == newHead) {
+                                    gameOver = true;
+                                }
+                            }
+                            int varX = newHead.first, varY = newHead.second;
+                            if (varX < 0 or varX > 576 or varY < 0 or varY > 576) {
+                                gameOver = true;
+                            }
                             // Working on Tail
                             if (newHead == food.first) {
+                                ++score;
                                 int fx, fy;
                                 while (1) {
                                     fx = (rand() % (576 - 0 + 1));
@@ -223,8 +254,19 @@ int main () {
                             head = snake.front();
                             newHead = head.first;
                             newHead.second += 64;
+                            // Game over logic
+                            for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+                                if ((*itr).first == newHead) {
+                                    gameOver = true;
+                                }
+                            }
+                            int varX = newHead.first, varY = newHead.second;
+                            if (varX < 0 or varX > 576 or varY < 0 or varY > 576) {
+                                gameOver = true;
+                            }
                             // Working on Tail
                             if (newHead == food.first) {
+                                ++score;
                                 int fx, fy;
                                 while (1) {
                                     fx = (rand() % (576 - 0 + 1));
@@ -284,53 +326,61 @@ int main () {
                 }
             }
         window.clear();
-        int x = 0, y = 0;
-        for (int i = 0; i < 10; ++i) {
-            x = 0;
-            for (int j = 0; j < 10; ++j) {
-                sprite.setPosition(x, y);
-                sprite.setTextureRect(sf::IntRect(0, 128, 64, 64));
-                if (x == food.first.first and y == food.first.second) {
-                    sprite.setTextureRect(sf::IntRect(0, 192, 64, 64));
-                }
-                for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
-                    pair<pair<int, int>, string> temp = *itr;
-                    if (temp.first.first == x and temp.first.second == y) {
-                        if (temp.second == "HU") {
-                            sprite.setTextureRect(sf::IntRect(192, 0, 64, 64));
-                        } else if (temp.second == "HL") {
-                            sprite.setTextureRect(sf::IntRect(192, 64, 64, 64));
-                        } else if (temp.second == "HR") {
-                            sprite.setTextureRect(sf::IntRect(256, 0, 64, 64));
-                        } else if (temp.second == "HD") {
-                            sprite.setTextureRect(sf::IntRect(256, 64, 64, 64));
-                        } else if (temp.second == "TU") {
-                            sprite.setTextureRect(sf::IntRect(256, 192, 64, 64));
-                        } else if (temp.second == "TL") {
-                            sprite.setTextureRect(sf::IntRect(256, 128, 64, 64));
-                        } else if (temp.second == "TR") {
-                            sprite.setTextureRect(sf::IntRect(192, 192, 64, 64));
-                        } else if (temp.second == "TD") {
-                            sprite.setTextureRect(sf::IntRect(192, 128, 64, 64));
-                        } else if (temp.second == "CTL") {
-                            sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
-                        } else if (temp.second == "CTR") {
-                            sprite.setTextureRect(sf::IntRect(128, 0, 64, 64));
-                        } else if (temp.second == "CBL") {
-                            sprite.setTextureRect(sf::IntRect(0, 64, 64, 64));
-                        } else if (temp.second == "CBR") {
-                            sprite.setTextureRect(sf::IntRect(128, 128, 64, 64));
-                        } else if (temp.second == "BV") {
-                            sprite.setTextureRect(sf::IntRect(128, 64, 64, 64));
-                        } else if (temp.second == "BH") {
-                            sprite.setTextureRect(sf::IntRect(64, 0, 64, 64));
+        if (gameOver) {
+            string s = to_string(score);
+            text.setString("Game Over\nScore\n" + s);
+            text.setCharacterSize(30);
+            text.setFillColor(sf::Color::Blue);
+            window.draw(text);
+        } else {
+            int x = 0, y = 0;
+            for (int i = 0; i < 10; ++i) {
+                x = 0;
+                for (int j = 0; j < 10; ++j) {
+                    sprite.setPosition(x, y);
+                    sprite.setTextureRect(sf::IntRect(0, 128, 64, 64));
+                    if (x == food.first.first and y == food.first.second) {
+                        sprite.setTextureRect(sf::IntRect(0, 192, 64, 64));
+                    }
+                    for (auto itr = snake.begin(); itr != snake.end(); ++itr) {
+                        pair<pair<int, int>, string> temp = *itr;
+                        if (temp.first.first == x and temp.first.second == y) {
+                            if (temp.second == "HU") {
+                                sprite.setTextureRect(sf::IntRect(192, 0, 64, 64));
+                            } else if (temp.second == "HL") {
+                                sprite.setTextureRect(sf::IntRect(192, 64, 64, 64));
+                            } else if (temp.second == "HR") {
+                                sprite.setTextureRect(sf::IntRect(256, 0, 64, 64));
+                            } else if (temp.second == "HD") {
+                                sprite.setTextureRect(sf::IntRect(256, 64, 64, 64));
+                            } else if (temp.second == "TU") {
+                                sprite.setTextureRect(sf::IntRect(256, 192, 64, 64));
+                            } else if (temp.second == "TL") {
+                                sprite.setTextureRect(sf::IntRect(256, 128, 64, 64));
+                            } else if (temp.second == "TR") {
+                                sprite.setTextureRect(sf::IntRect(192, 192, 64, 64));
+                            } else if (temp.second == "TD") {
+                                sprite.setTextureRect(sf::IntRect(192, 128, 64, 64));
+                            } else if (temp.second == "CTL") {
+                                sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+                            } else if (temp.second == "CTR") {
+                                sprite.setTextureRect(sf::IntRect(128, 0, 64, 64));
+                            } else if (temp.second == "CBL") {
+                                sprite.setTextureRect(sf::IntRect(0, 64, 64, 64));
+                            } else if (temp.second == "CBR") {
+                                sprite.setTextureRect(sf::IntRect(128, 128, 64, 64));
+                            } else if (temp.second == "BV") {
+                                sprite.setTextureRect(sf::IntRect(128, 64, 64, 64));
+                            } else if (temp.second == "BH") {
+                                sprite.setTextureRect(sf::IntRect(64, 0, 64, 64));
+                            }
                         }
                     }
+                    window.draw(sprite);   
+                    x += 64;
                 }
-                window.draw(sprite);   
-                x += 64;
+                y += 64;
             }
-            y += 64;
         }
         window.display();
     }
